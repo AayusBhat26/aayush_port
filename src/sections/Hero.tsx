@@ -1,161 +1,137 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Button from "@/components/Button";
-import designExample1 from "@/assets/images/design-example-1.png";
-import designExample2 from "@/assets/images/design-example-2.png";
-import extraImage from "@/assets/images/extra-image.png"; // Import your new image
-import Image from "next/image";
-import Pointer from "@/components/Pointer";
-import { motion, useAnimate } from "framer-motion";
-import { useEffect } from "react";
-import cursorImage from "@/assets/images/cursor-you.svg";
+import { 
+    Code, 
+    Database, 
+    Zap, 
+    Brain, 
+    Globe, 
+    Smartphone 
+} from "lucide-react";
 
 export default function Hero() {
-  const [leftDesignScope, leftDesignAnimate] = useAnimate();
-  const [leftPointerScope, leftPointerAnimate] = useAnimate();
+    const [isVisible, setIsVisible] = useState(false);
+    const { scrollY } = useScroll();
+    const y = useTransform(scrollY, [0, 300], [0, -100]);
+    const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+    const scale = useTransform(scrollY, [0, 300], [1, 0.8]);
 
-  const [rightDesignScope, rightDesignAnimate] = useAnimate();
-  const [rightPointerScope, rightPointerAnimate] = useAnimate();
+    const springY = useSpring(y, { stiffness: 300, damping: 30 });
+    const springOpacity = useSpring(opacity, { stiffness: 300, damping: 30 });
+    const springScale = useSpring(scale, { stiffness: 300, damping: 30 });
 
-  useEffect(() => {
-    leftDesignAnimate([
-      [leftDesignScope.current, { opacity: 1 }, { duration: 0.5 }],
-      [leftDesignScope.current, { y: 0, x: 0 }, { duration: 0.5 }],
-    ]);
+    useEffect(() => {
+        setIsVisible(true);
+    }, []);
 
-    leftPointerAnimate([
-      [leftPointerScope.current, { opacity: 1 }, { duration: 0.5 }],
-      [leftPointerScope.current, { y: 0, x: -100 }, { duration: 0.5 }],
-      [
-        leftPointerScope.current,
-        { y: [0, 16, 0], x: 0 },
-        { duration: 0.5, ease: "easeInOut" },
-      ],
-    ]);
+    const floatingIcons = [
+        { Icon: Code, delay: 0, x: -20, y: -10 },
+        { Icon: Database, delay: 0.2, x: 20, y: -15 },
+        { Icon: Zap, delay: 0.4, x: -15, y: 15 },
+        { Icon: Brain, delay: 0.6, x: 25, y: 10 },
+        { Icon: Globe, delay: 0.8, x: -25, y: -5 },
+        { Icon: Smartphone, delay: 1, x: 15, y: 20 },
+    ];
 
-    rightDesignAnimate([
-      [
-        rightDesignScope.current,
-        { opacity: 1 },
-        { duration: 0.5, delay: 1.5 },
-      ],
-      [rightDesignScope.current, { y: 0, x: 0 }, { duration: 0.5 }],
-    ]);
+    return (
+        <section id="home" className="py-24 relative overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950">
+            {/* Floating Icons */}
+            {floatingIcons.map(({ Icon, delay, x, y }, index) => (
+                <motion.div
+                    key={index}
+                    className="absolute text-blue-400/20 dark:text-blue-400/30"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ 
+                        opacity: [0.3, 0.6, 0.3], 
+                        scale: [1, 1.1, 1],
+                        x: [x, x + 10, x],
+                        y: [y, y - 10, y]
+                    }}
+                    transition={{
+                        duration: 6,
+                        delay: delay + 1,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                    }}
+                    style={{
+                        left: `${50 + x}%`,
+                        top: `${30 + y}%`,
+                    }}
+                >
+                    <Icon className="w-8 h-8 md:w-12 md:h-12" />
+                </motion.div>
+            ))}
 
-    rightPointerAnimate([
-      [
-        rightPointerScope.current,
-        { opacity: 1 },
-        { duration: 0.5, delay: 1.5 },
-      ],
-      [rightPointerScope.current, { y: 0, x: 175 }, { duration: 0.5 }],
-      [
-        rightPointerScope.current,
-        { y: [0, 20, 0], x: 0 },
-        { duration: 0.5, ease: "easeInOut" },
-      ],
-    ]);
-  }, []);
+            <div className="container relative z-10">
+                <motion.div
+                    className="text-center max-w-4xl mx-auto"
+                    style={{ y: springY, opacity: springOpacity, scale: springScale }}
+                >
+                    {/* Main Heading */}
+                    <motion.h1 
+                        className="text-5xl md:text-7xl font-bold mb-6 text-neutral-900 dark:text-white"
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
+                        transition={{ duration: 0.8, delay: 0.1 }}
+                    >
+                        Passionate{" "}
+                        <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            Full-Stack Developer
+                        </span>{" "}
+                        Building the Future
+                    </motion.h1>
 
-  return (
-    <section
-      id="home"
-      className="py-24 overflow-x-clip"
-      style={{
-        cursor: `url(${cursorImage.src}), auto`,
-      }}
-    >
-      <div className="container relative ">
-        <motion.div
-          ref={leftDesignScope}
-          initial={{ opacity: 0, y: 100, x: -100 }}
-          className="absolute -left-32 top-16 hidden lg:block"
-          drag
-        >
-          <Image
-            draggable={false}
-            src={"/github_stats.png"}
-            width={300}
-            height={300}
-            style={{
-              opacity: 0.5,
-            }}
-            alt="github stats"
-          />
-        </motion.div>
-        <motion.div
-          ref={leftPointerScope}
-          initial={{ opacity: 0, y: 100, x: -200 }}
-          className="absolute top-96 left-56 hidden lg:block"
-        >
-          <Pointer name="Aayush" />
-        </motion.div>
+                    {/* Subtitle */}
+                    <motion.p 
+                        className="text-xl md:text-2xl text-neutral-600 dark:text-white/70 mb-8 leading-relaxed"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
+                    >
+                        Crafting scalable web applications with modern technologies, 
+                        real-time features, and AI integration. From concept to deployment, 
+                        I bring ideas to life with clean code and exceptional user experiences.
+                    </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 100, x: 100 }}
-          ref={rightDesignScope}
-          className="absolute -right-64 -top-16 hidden lg:block"
-          drag
-        >
-          <Image
-            draggable={false}
-            src={"/project_1.png"}
-            width={500}
-            height={500}
-            style={{
-              opacity: 0.5,
-            }}
-            alt="project"
-          />
-        </motion.div>
-        <motion.div
-          ref={rightPointerScope}
-          initial={{ opacity: 0, x: 275, y: 100 }}
-          className="absolute -top-4 right-80 hidden lg:block"
-        >
-          <Pointer color="red" name="Bhat" />
-        </motion.div>
+                    {/* CTA Buttons */}
+                    <motion.div 
+                        className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                    >
+                        <Button href="#projects" size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold shadow-lg shadow-blue-500/25">
+                            View Projects
+                        </Button>
+                        <Button href="#contact" variant="outline" size="lg" className="border-2 border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 px-8 py-4 text-lg font-semibold">
+                            Get In Touch
+                        </Button>
+                    </motion.div>
+                </motion.div>
+            </div>
 
-        <div>
-          <p className="text-center text-7xl font-bold ">
-            <span className="hover:text-orange-400">Aayush</span> <span>Kumar</span>
-            <span className="text-green-400"> Bhat</span>
-          </p>
-        </div>
-        <h1 className="text-xl md:text-2xl lg:text-3xl font-medium text-center mt-6 ">
-          Software Developer from{" "}
-          <p className="text-center text-6xl font-bold ">
-            <span className="hover:text-orange-400">In</span>
-            <span>d</span>
-            <span className="text-green-400">ia</span>
-          </p>
-        </h1>
-        <p className="text-center text-xl text-white/10 mt-8 max-w-2xl mx-auto">
-          Software developer with a passion for creating innovative solutions. I have
-          experience in web development. I am always eager to learn new technologies and
-          improve my skills. Let's connect and collaborate on exciting projects!
-        </p>
-
-        
-        {/* <motion.div
-          initial={{ opacity: 0, y: 40, x: 0 }}
-          animate={{ opacity: 1, y: 0, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-        >
-          <Image 
-
-            src={"/leetcode_stats.png"}
-            alt="LeetcodeStatis"
-            width={400}
-            height={400}
-            style={{
-              opacity:1
-            }}
-            className="rounded-xl shadow-lg"
-          />
-        </motion.div> */}
-      </div>
-    </section>
-  );
+            {/* Scroll Indicator */}
+            <motion.div
+                className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+                transition={{ duration: 0.8, delay: 1.5 }}
+            >
+                <motion.div
+                    className="w-6 h-10 border-2 border-neutral-400 dark:border-neutral-500 rounded-full flex justify-center"
+                    animate={{ y: [0, 10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                    <motion.div
+                        className="w-1 h-3 bg-neutral-400 dark:bg-neutral-500 rounded-full mt-2"
+                        animate={{ y: [0, 12, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                </motion.div>
+            </motion.div>
+        </section>
+    );
 }

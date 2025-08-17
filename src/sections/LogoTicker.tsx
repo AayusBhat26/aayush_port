@@ -1,75 +1,81 @@
 "use client";
 
-import quantumLogo from "@/assets/images/quantum.svg";
-import acmeLogo from "@/assets/images/acme-corp.svg";
-import echoValleyLogo from "@/assets/images/echo-valley.svg";
-import pulseLogo from "@/assets/images/pulse.svg";
-import outsideLogo from "@/assets/images/outside.svg";
-import apexLogo from "@/assets/images/apex.svg";
-import celestialLogo from "@/assets/images/celestial.svg";
-import twiceLogo from "@/assets/images/twice.svg";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import React from "react";
+import { useEffect, useRef, useState } from "react";
 
 const logos = [
-    { name: "JavaScript", image: quantumLogo },
-    { name: "Typescript", image: acmeLogo },
-    { name: "Java", image: echoValleyLogo },
-    { name: "C/C++", image: pulseLogo },
-    { name: "React", image: outsideLogo },
-    { name: "Next", image: apexLogo },
-    { name: "MERN", image: celestialLogo },
-    { name: "MySQL", image: twiceLogo },
-    { name: "PostgresSQL", image: twiceLogo },
-    { name: "Docker", image: twiceLogo },
-    { name: "Prisma", image: twiceLogo },
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "PostgreSQL",
+    "MongoDB",
+    "Socket.io",
+    "WebRTC",
+    "Prisma",
+    "Tailwind CSS",
+    "Framer Motion",
+    "shadcn/ui",
+    "Google Gemini AI",
+    "Firebase",
+    "Vercel",
+    "Railway"
 ];
 
 export default function LogoTicker() {
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setScrollPosition((prev) => {
+                if (containerRef.current) {
+                    const maxScroll = containerRef.current.scrollWidth - containerRef.current.clientWidth;
+                    return prev >= maxScroll ? 0 : prev + 1;
+                }
+                return prev;
+            });
+        }, 30);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <section id="skills_1" className="py-24 overflow-x-clip">
+        <section className="py-12 overflow-hidden bg-gradient-to-r from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800">
             <div className="container">
-                <h3 className="text-center text-white/50 text-2xl">
-                    Skills and Technologies
-                </h3>
-                <div className="flex overflow-hidden mt-16 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-                    <motion.div
-                        animate={{
-                            x: "-50%",
-                        }}
-                        transition={{
-                            duration: 30,
-                            ease: "linear",
-                            repeat: Infinity,
-                        }}
-                        className="flex gap-24 pr-24"
-                    >
-                        {Array.from({ length: 2 }).map((_, i) => (
-                            <React.Fragment key={i}>
-                                {logos.map((each) => (
-                                    <div
-                                        key={each.name}
-                                        className="flex flex-col items-center group"
-                                    >
-                                        {/* Uncomment below if you want to show logos */}
-                                        {/* <Image
-                                            src={each.image}
-                                            alt={each.name}
-                                            className="w-16 h-16 mb-2"
-                                        /> */}
-                                        <span
-                                            className="text-3xl font-bold text-white transition-colors duration-200 group-hover:text-blue-400 hover:text-blue-400 cursor-pointer"
-                                        >
-                                            {each.name}
-                                        </span>
-                                    </div>
-                                ))}
-                            </React.Fragment>
-                        ))}
-                    </motion.div>
+                <div className="flex items-center justify-center">
+                    <div className="text-center">
+                        <h3 className="text-2xl font-semibold text-neutral-900 dark:text-white mb-4">
+                            Technologies I Work With
+                        </h3>
+                        <div className="flex items-center gap-8 text-neutral-600 dark:text-white/60">
+                            {logos.map((logo, index) => (
+                                <div
+                                    key={logo}
+                                    className="bg-white/80 dark:bg-neutral-900/50 border border-neutral-200 dark:border-white/10 px-4 py-2 rounded-lg text-sm font-medium hover:border-blue-400/30 transition-colors shadow-sm"
+                                    style={{
+                                        animationDelay: `${index * 0.1}s`,
+                                        animation: 'fadeInUp 0.6s ease-out forwards'
+                                    }}
+                                >
+                                    {logo}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
+            <style jsx>{`
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `}</style>
         </section>
     );
 }

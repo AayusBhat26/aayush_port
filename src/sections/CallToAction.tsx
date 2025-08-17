@@ -1,51 +1,50 @@
 "use client";
 
-import { AnimationPlaybackControls, motion, useAnimate } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
+import { useEffect, useRef } from "react";
+import Button from "@/components/Button";
 
 export default function CallToAction() {
-    const animation = useRef<AnimationPlaybackControls>();
-    const [scope, animate] = useAnimate();
-
-    const [slowDownAnimation, setSlowDownAnimation] = useState(false);
+    const scopeRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        animation.current = animate(
-            scope.current,
-            { x: "-50%" },
-            { duration: 30, ease: "linear", repeat: Infinity }
-        );
+        const element = scopeRef.current;
+        if (!element) return;
+
+        const animate = () => {
+            element.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+            }, 1000);
+        };
+
+        const interval = setInterval(animate, 2000);
+        return () => clearInterval(interval);
     }, []);
-
-    useEffect(() => {
-        if (animation.current) {
-            if (slowDownAnimation) {
-                animation.current.speed = 0.5;
-            } else {
-                animation.current.speed = 1;
-            }
-        }
-    }, [slowDownAnimation]);
 
     return (
         <section className="py-24">
-            <div className="overflow-x-clip p-4 flex">
-                <motion.div
-                    ref={scope}
-                    className="flex flex-none gap-16 pr-16 text-7xl md:text-8xl font-medium"
-                    onMouseEnter={() => setSlowDownAnimation(true)}
-                    onMouseLeave={() => setSlowDownAnimation(false)}
+            <div className="container">
+                <div
+                    ref={scopeRef}
+                    className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 border border-blue-400/30 rounded-3xl p-12 text-center transition-transform duration-1000"
                 >
-                    {Array.from({ length: 10 }).map((_, index) => (
-                        <div key={index} className="flex items-center gap-16">
-                            <span className="text-blue-400 text-7xl ">
-                                &#10038;
-                            </span>
-                            <span className={twMerge(slowDownAnimation && "text-blue-400")}>Try it for free</span>
-                        </div>
-                    ))}
-                </motion.div>
+                    <h2 className="text-5xl font-bold text-white mb-6">
+                        Ready to Build Something{" "}
+                        <span className="text-blue-400">Amazing?</span>
+                    </h2>
+                    <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+                        Let's collaborate on your next project. Whether you need a full-stack application, 
+                        real-time features, or AI integration, I'm here to help bring your ideas to life.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Button href="#contact" className="bg-blue-600 hover:bg-blue-700 text-white">
+                            Get In Touch
+                        </Button>
+                        <Button href="#projects" variant="outline">
+                            View My Work
+                        </Button>
+                    </div>
+                </div>
             </div>
         </section>
     );
