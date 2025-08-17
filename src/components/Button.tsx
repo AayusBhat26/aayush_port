@@ -24,10 +24,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     size?: "sm" | "lg";
     href?: string;
     className?: string;
+    target?: string;
+    rel?: string;
 }
 
 const Button = (props: ButtonProps) => {
-    const { variant, className, size, href, children, ...rest } = props;
+    const { variant, className, size, href, children, target, rel, ...rest } = props;
 
     const buttonClasses = classess({ variant, className, size });
 
@@ -36,6 +38,8 @@ const Button = (props: ButtonProps) => {
             <a 
                 href={href} 
                 className={buttonClasses}
+                target={target}
+                rel={rel}
                 onClick={(e) => {
                     if (href.startsWith('#')) {
                         e.preventDefault();

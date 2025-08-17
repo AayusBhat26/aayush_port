@@ -90,17 +90,17 @@ const mainCategories = [
         color: "blue",
         description: "Full-stack web development with modern technologies",
         stats: "7+ Projects • 100% Real-time • 5+ AI Integrations",
-        gradient: "from-blue-500/20 to-purple-500/20",
+        gradient: "dark:bg-black",
         borderColor: "border-blue-400/20",
         iconColor: "text-blue-400"
     },
     {
         title: "DSA & CP",
         icon: Brain,
-        color: "green",
+        color: "black",
         description: "Competitive programming and problem solving",
         stats: "450+ LeetCode • 250+ GFG • Gold HackerRank",
-        gradient: "from-green-500/20 to-blue-500/20",
+        gradient: "dark:bg-black",
         borderColor: "border-green-400/20",
         iconColor: "text-green-400"
     }

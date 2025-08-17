@@ -34,6 +34,20 @@ const projects = [
         image: "/taskflow-preview.png",
         featured: true
     },
+     {
+        title: "Anugoonj - GGSIPU culture fest website",
+        description: "A platform to showcase the cultural fest of GGSIPU with event details, schedules, and live updates.",
+        tech: ["Next.js", "Firebase", "MongoDB", "Tailwind CSS"],
+        features: [
+            "Event details and schedules",
+            "Responsive design for all devices", 
+            "Count down to show time"
+        ],
+        github: "https://github.com/AayusBhat26",
+        live: "https://anugoonj.in/",
+        image: "/anugoonj-preview.png",
+        featured: true
+    },
     {
         title: "Project Connecting - Discord-like Platform",
         description: "A full-stack communication platform with real-time messaging, video/audio calls, and screen sharing capabilities.",
@@ -62,7 +76,7 @@ const projects = [
             "Responsive design for all devices"
         ],
         github: "https://github.com/AayusBhat26/legal_assist",
-        live: "https://anugoonj.in/",
+        live: "https://legal-assist-one.vercel.app/",
         image: "/legal-assist-preview.png",
         featured: true
     },

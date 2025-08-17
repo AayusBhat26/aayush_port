@@ -70,6 +70,12 @@ export default function Hero() {
                     className="text-center max-w-4xl mx-auto"
                     style={{ y: springY, opacity: springOpacity, scale: springScale }}
                 >
+                    {/* resume */}
+                    <div className="w-36 m-4 mx-auto mb-6">
+                        <Button href="https://drive.google.com/file/d/1-nfDc1OKOCpRKZT_G3jDTZXiJNU1LPDK/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                            Resume
+                        </Button>
+                    </div>
                     {/* Main Heading */}
                     <motion.h1 
                         className="text-5xl md:text-7xl font-bold mb-6 text-neutral-900 dark:text-white"
@@ -77,11 +83,10 @@ export default function Hero() {
                         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
                         transition={{ duration: 0.8, delay: 0.1 }}
                     >
-                        Passionate{" "}
                         <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                             Full-Stack Developer
                         </span>{" "}
-                        Building the Future
+                        {/* Building the Future */}
                     </motion.h1>
 
                     {/* Subtitle */}
