@@ -3,12 +3,12 @@
 import { useState } from "react";
 import Tag from "@/components/Tag";
 import Button from "@/components/Button";
-import { 
-    Mail, 
-    Linkedin, 
-    Github, 
-    Send, 
-    CheckCircle, 
+import {
+    Mail,
+    Linkedin,
+    Github,
+    Send,
+    CheckCircle,
     AlertCircle,
     MessageSquare,
     Code,
@@ -32,7 +32,7 @@ const socialLinks = [
     },
     {
         name: "Email",
-        url: "mailto:naayush448@gmail.com",
+        url: "mailto:work.aayush.bhat@gmail.com",
         icon: Mail,
         color: "text-red-400 hover:text-red-300"
     }
@@ -89,7 +89,7 @@ export default function Contact() {
                     & Build Together
                 </h2>
                 <p className="text-center text-xl text-neutral-600 dark:text-white/60 mt-6 max-w-3xl mx-auto">
-                    Ready to collaborate on your next project? Whether you need a full-stack application, 
+                    Ready to collaborate on your next project? Whether you need a full-stack application,
                     real-time features, or AI integration, I'm here to help bring your ideas to life.
                 </p>
 
@@ -99,7 +99,7 @@ export default function Contact() {
                         <h3 className="text-2xl font-semibold text-neutral-900 dark:text-white mb-6">
                             Send me a message
                         </h3>
-                        
+
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-neutral-700 dark:text-white/80 mb-2">
@@ -116,7 +116,7 @@ export default function Contact() {
                                     placeholder="Your name"
                                 />
                             </div>
-                            
+
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium text-neutral-700 dark:text-white/80 mb-2">
                                     Email
@@ -132,7 +132,7 @@ export default function Contact() {
                                     placeholder="your.email@example.com"
                                 />
                             </div>
-                            
+
                             <div>
                                 <label htmlFor="message" className="block text-sm font-medium text-neutral-700 dark:text-white/80 mb-2">
                                     Message
@@ -148,7 +148,7 @@ export default function Contact() {
                                     placeholder="Tell me about your project..."
                                 />
                             </div>
-                            
+
                             <Button
                                 type="submit"
                                 disabled={isSubmitting}
@@ -175,7 +175,7 @@ export default function Contact() {
                                 <span className="text-green-400">Message sent successfully!</span>
                             </div>
                         )}
-                        
+
                         {submitStatus === "error" && (
                             <div className="mt-4 p-4 bg-red-500/20 border border-red-400/30 rounded-lg flex items-center gap-3">
                                 <AlertCircle className="w-5 h-5 text-red-400" />
@@ -191,7 +191,7 @@ export default function Contact() {
                                 Let's connect
                             </h3>
                             <p className="text-neutral-700 dark:text-white/70 leading-relaxed mb-8">
-                                I'm always open to discussing new opportunities, interesting projects, 
+                                I'm always open to discussing new opportunities, interesting projects,
                                 or just having a chat about technology and development.
                             </p>
                         </div>
@@ -231,9 +231,16 @@ export default function Contact() {
                                         href={link.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`p-3 bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-white/10 rounded-lg hover:border-blue-400/30 transition-all duration-300 hover:scale-105 ${link.color}`}
+                                        aria-label={link.name === "Email" ? link.url.replace("mailto:", "") : link.name}
+                                        className={`relative group p-3 bg-neutral-100 dark:bg-neutral-800/50 border border-neutral-200 dark:border-white/10 rounded-lg hover:border-blue-400/30 transition-all duration-300 hover:scale-105 ${link.color}`}
                                     >
                                         <link.icon className="w-5 h-5" />
+
+                                        {link.name === "Email" && (
+                                            <span className="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-3 pointer-events-none whitespace-nowrap bg-neutral-900 text-white text-base md:text-lg px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                                                {link.url.replace("mailto:", "")}
+                                            </span>
+                                        )}
                                     </a>
                                 ))}
                             </div>

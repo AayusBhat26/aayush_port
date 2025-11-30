@@ -1,12 +1,12 @@
 "use client";
 
 import Tag from "@/components/Tag";
-import { 
-    Github, 
-    Users, 
-    Zap, 
-    Award, 
-    TrendingUp, 
+import {
+    Github,
+    Users,
+    Zap,
+    Award,
+    TrendingUp,
     Code,
     Database,
     Globe,
@@ -37,11 +37,11 @@ const achievements = [
         stats: "100% Real-time"
     },
     {
-        title: "AI Integration",
-        description: "Successfully integrated AI services like Google Gemini across multiple projects",
+        title: "Oracle Cloud Infrastructure",
+        description: "Oracle Cloud Infrastructure Associate certified — experience deploying cloud-native applications on OCI.",
         icon: Award,
-        link: "#projects",
-        stats: "5+ AI Projects"
+        link: "#",
+        stats: "OCI Associate"
     }
 ];
 
@@ -49,6 +49,8 @@ const technologies = [
     { name: "Next.js 14", category: "Framework" },
     { name: "React.js", category: "Frontend" },
     { name: "TypeScript", category: "Language" },
+    { name: "Docker", category: "DevOps" },
+    { name: "Kubernetes", category: "DevOps" },
     { name: "Node.js", category: "Backend" },
     { name: "PostgreSQL", category: "Database" },
     { name: "MongoDB", category: "Database" },
@@ -60,8 +62,7 @@ const technologies = [
     { name: "Framer Motion", category: "Animation" },
     { name: "shadcn/ui", category: "UI" },
     { name: "Firebase", category: "Cloud" },
-    { name: "Vercel", category: "Deployment" },
-    { name: "Railway", category: "Deployment" }
+    { name: "Vercel", category: "Deployment" }
 ];
 
 export default function Integrations() {
@@ -76,7 +77,7 @@ export default function Integrations() {
                     <span className="text-blue-400">Technology Stack</span>
                 </h2>
                 <p className="text-center text-xl text-neutral-600 dark:text-white/60 mt-6 max-w-3xl mx-auto">
-                    My journey in tech has been marked by continuous learning and building 
+                    My journey in tech has been marked by continuous learning and building
                     innovative solutions that make a real impact.
                 </p>
 

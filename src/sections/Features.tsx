@@ -2,12 +2,12 @@
 
 import Tag from "@/components/Tag";
 import Button from "@/components/Button";
-import { 
-    ExternalLink, 
-    Github, 
-    Calendar, 
-    Users, 
-    Zap, 
+import {
+    ExternalLink,
+    Github,
+    Calendar,
+    Users,
+    Zap,
     Brain,
     MessageSquare,
     Code,
@@ -30,7 +30,7 @@ const projects = [
             "Real-time chat and workspace sharing"
         ],
         github: "https://github.com/AayusBhat26/TaskFlow-main",
-        live: "https://task-flow-main.vercel.app/",
+        live: "https://taskflow-five-sigma.vercel.app/",
         image: "/taskflow-preview.png",
         featured: true
     },
@@ -40,7 +40,7 @@ const projects = [
         tech: ["Next.js", "Firebase", "MongoDB", "Tailwind CSS"],
         features: [
             "Event details and schedules",
-            "Responsive design for all devices", 
+            "Responsive design for all devices",
             "Count down to show time"
         ],
         github: "https://github.com/AayusBhat26",
@@ -49,19 +49,19 @@ const projects = [
         featured: true
     },
     {
-        title: "Project Connecting - Discord-like Platform",
-        description: "A full-stack communication platform with real-time messaging, video/audio calls, and screen sharing capabilities.",
-        tech: ["Next.js", "TypeScript", "WebRTC", "Socket.io", "PostgreSQL", "Prisma"],
+        title: "CrowdGuard - AI-powered Surveillance",
+        description: "AI-driven, scalable surveillance system for real-time multi-camera monitoring, hazard detection, and automated alerts.",
+        tech: ["React", "Node.js", "Django", "Docker", "MongoDB", "Tailwind CSS", "Auth0", "Apache Kafka", "Express", "LangGraph"],
         features: [
-            "Real-time messaging with WebSockets",
-            "Video and audio calling with WebRTC",
-            "Screen sharing functionality",
-            "Hub and subhub organization system",
-            "User authentication and permissions"
+            "Real-time multi-camera monitoring with AI inference",
+            "Kafka-based pub/sub architecture for scalable event streaming",
+            "Dockerized services for easy deployment and isolation",
+            "Privacy-conscious detection with reduced false alarms",
+            "Automated alerting and recommended actions for volunteers on ground"
         ],
-        github: "https://github.com/AayusBhat26/Project_Connecting",
-        live: "https://project-connecting-nny4.vercel.app/",
-        image: "/project-connecting-preview.png",
+        github: "",
+        live: "",
+        image: "/crowdguard-preview.png",
         featured: true
     },
     {
@@ -92,7 +92,7 @@ const projects = [
             "Real-time alerts and webhooks"
         ],
         github: "https://github.com/AayusBhat26/social_media_trends",
-        live: "#",
+        live: "https://www.linkedin.com/posts/aayush-kumar-bhat-_last-night-i-was-working-on-this-project-activity-7312487333247827969-XUHi",
         image: "/social-trends-preview.png",
         featured: false
     },
@@ -112,22 +112,7 @@ const projects = [
         image: "/ml4e-preview.png",
         featured: false
     },
-    {
-        title: "Kanban Board - Task Management",
-        description: "A full-stack Kanban-style task management application with notes for each todo and comprehensive CRUD operations.",
-        tech: ["React", "Node.js", "Express", "MongoDB", "TypeScript"],
-        features: [
-            "Visual Kanban board with drag-and-drop",
-            "Notes and descriptions for each task",
-            "CRUD operations for tasks and notes",
-            "Persistent data management",
-            "Responsive design"
-        ],
-        github: "https://github.com/AayusBhat26/kanban",
-        live: "#",
-        image: "/kanban-preview.png",
-        featured: false
-    },
+    // Kanban project removed per request
     {
         title: "Draw Together - Collaborative Drawing",
         description: "A collaborative drawing application where multiple users can draw together in real-time on a shared canvas.",
@@ -140,7 +125,7 @@ const projects = [
             "Responsive design"
         ],
         github: "https://github.com/AayusBhat26/draw_together",
-        live: "#",
+        live: "https://github.com/AayusBhat26/draw_together",
         image: "/draw-together-preview.png",
         featured: false
     }
@@ -161,7 +146,7 @@ export default function Features() {
                     <span className="text-blue-400">Solve Real Problems</span>
                 </h2>
                 <p className="text-center text-xl text-neutral-600 dark:text-white/60 mt-6 max-w-3xl mx-auto">
-                    From AI-powered platforms to real-time communication tools, each project demonstrates 
+                    From AI-powered platforms to real-time communication tools, each project demonstrates
                     my expertise in building comprehensive, scalable applications.
                 </p>
 
@@ -202,7 +187,7 @@ export default function Features() {
                                         </Button>
                                     </div>
                                 </div>
-                                
+
                                 <p className="text-neutral-700 dark:text-white/70 mb-6 leading-relaxed">
                                     {project.description}
                                 </p>
@@ -274,7 +259,7 @@ export default function Features() {
                                         </Button>
                                     </div>
                                 </div>
-                                
+
                                 <p className="text-neutral-600 dark:text-white/60 text-sm mb-4">
                                     {project.description}
                                 </p>

@@ -6,6 +6,8 @@ const logos = [
     "React",
     "Next.js",
     "TypeScript",
+        "Docker",
+        "Kubernetes",
     "Node.js",
     "PostgreSQL",
     "MongoDB",
@@ -18,7 +20,6 @@ const logos = [
     "Google Gemini AI",
     "Firebase",
     "Vercel",
-    "Railway"
 ];
 
 export default function LogoTicker() {

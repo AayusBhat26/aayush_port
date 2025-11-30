@@ -23,9 +23,11 @@ export default async function handler(req, res) {
   });
 
   try {
+    const receiver = process.env.CONTACT_RECEIVER || 'work.aayush.bhat@gmail.com';
+
     await transporter.sendMail({
       from: process.env.SMTP_USER,
-      to: process.env.CONTACT_RECEIVER,
+      to: receiver,
       replyTo: email,
       subject: `Portfolio Contact: ${name}`,
       text: message,

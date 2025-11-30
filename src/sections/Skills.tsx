@@ -1,12 +1,12 @@
 "use client";
 
 import Tag from "@/components/Tag";
-import { 
-    Code2, 
-    Server, 
-    Zap, 
-    Brain, 
-    Database, 
+import {
+    Code2,
+    Server,
+    Zap,
+    Brain,
+    Database,
     Cloud,
     Globe,
     Smartphone,
@@ -20,7 +20,7 @@ const skills = [
         icon: Code2,
         color: "text-blue-400",
         bgColor: "bg-blue-400/10",
-        skills: ["React.js", "Next.js 14", "TypeScript", "Tailwind CSS", "Framer Motion", "shadcn/ui"]
+        skills: ["React.js", "Next.js 14", "TypeScript", "Docker", "Kubernetes", "Tailwind CSS", "Framer Motion", "shadcn/ui"]
     },
     {
         category: "Backend Development",
@@ -36,19 +36,13 @@ const skills = [
         bgColor: "bg-yellow-400/10",
         skills: ["Socket.io", "WebRTC", "WebSockets", "Real-time Chat", "Video/Audio Calls", "Screen Sharing"]
     },
-    {
-        category: "AI & Machine Learning",
-        icon: Brain,
-        color: "text-purple-400",
-        bgColor: "bg-purple-400/10",
-        skills: ["Google Gemini AI", "OpenAI API", "LangChain", "NLP", "Sentiment Analysis"]
-    },
+    // AI & Machine Learning card removed per request
     {
         category: "Database & Cloud",
         icon: Database,
         color: "text-cyan-400",
         bgColor: "bg-cyan-400/10",
-        skills: ["PostgreSQL", "MongoDB", "Firebase", "Supabase", "Vercel", "Railway"]
+        skills: ["PostgreSQL", "MongoDB", "Firebase", "Supabase", "Oracle Cloud"]
     },
     {
         category: "DevOps & Tools",
@@ -71,7 +65,7 @@ export default function Skills() {
                     <span className="text-blue-400">Skills</span>{" "}
                     & Technologies
                 </h2>
-                
+
                 <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {skills.map((skillGroup, index) => (
                         <div

@@ -10,7 +10,7 @@ const faqs = [
     },
     {
         question: "What technologies do you use for backend development?",
-        answer: "I work with Node.js, Express.js, PostgreSQL, MongoDB, Prisma ORM, and various cloud platforms like Vercel and Railway. I also have experience with real-time technologies like Socket.io and WebRTC for building interactive applications."
+        answer: "I work with Node.js, Express.js, PostgreSQL, MongoDB, Prisma ORM, and deployment platforms like Vercel. I also have experience with containerization and orchestration (Docker, Kubernetes) as well as real-time technologies like Socket.io and WebRTC for building interactive applications."
     },
     {
         question: "Do you have experience with AI integration?",

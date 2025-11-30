@@ -35,21 +35,30 @@ const Button = (props: ButtonProps) => {
 
     if (href) {
         return (
-            <a 
-                href={href} 
+            <a
+                href={href}
                 className={buttonClasses}
                 target={target}
                 rel={rel}
                 onClick={(e) => {
-                    if (href.startsWith('#')) {
-                        e.preventDefault();
-                        const element = document.querySelector(href);
-                        if (element) {
-                            element.scrollIntoView({ 
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
+                    try {
+                        if (href === '#') {
+                            // '#' by itself is not a valid selector; scroll to top
+                            e.preventDefault();
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        } else if (href && href.startsWith('#') && href.length > 1) {
+                            e.preventDefault();
+                            const element = document.querySelector(href);
+                            if (element) {
+                                element.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }
                         }
+                    } catch (err) {
+                        // If querySelector fails for any reason, allow default link behavior
+                        // and silently ignore scrolling attempt.
                     }
                 }}
             >
